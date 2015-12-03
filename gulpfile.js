@@ -21,11 +21,8 @@ wrench.readdirSyncRecursive('./gulp').filter(function(file) {
 	return (/\.(js|coffee)$/i).test(file);
 }).map(function(file) {
 	if(file.match(/templates\\/g)) return;
-	console.log(file)
-	var tmpFunc = require('./gulp/' + file);
-	if(tmpFunc){
-		tmpFunc(options);
-	}
+	console.log(file);
+	require('./gulp/' + file)(options);
 });
 
 gulp.task('default', ['clean'], function () {
