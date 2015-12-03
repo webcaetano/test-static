@@ -86,4 +86,12 @@ module.exports = function(options) {
 		.pipe($.subtree())
     	.pipe($.clean());
 	});
+
+	var ghPages = require('gulp-gh-pages');
+
+	gulp.task('gh', ['build'], function() {
+		return gulp.src('dist/**/*')
+		.pipe(ghPages())
+		.pipe($.clean());
+	});
 };
