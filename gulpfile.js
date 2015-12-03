@@ -23,7 +23,7 @@ wrench.readdirSyncRecursive('./gulp').filter(function(file) {
 	if(file.match(/templates\\/g)) return;
 	console.log(file)
 	var tmpFunc = require('./gulp/' + file);
-	if(tmpFunc && typeof=='function'){
+	if(tmpFunc){
 		tmpFunc(options);
 	}
 });

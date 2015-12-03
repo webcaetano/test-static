@@ -12,3 +12,7 @@ before_script:
   - npm install -g bower
   - npm install -g gulp
   - bower install
+cache:
+  directories:
+    - node_modules
+    - bower_components
