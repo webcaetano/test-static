@@ -1,6 +1,9 @@
  # .travis.yml
-script:
-  - bash deploy-ghpages.sh
+sudo: true
+language: node_js
+node_js:
+  - '0.12'
+script: npm run-script deploy
 env:
   global:
   - GH_REF: github.com/webcaetano/test-static.git
