@@ -2,18 +2,18 @@
 # See https://medium.com/@nthgergo/publishing-gh-pages-with-travis-ci-53a8270e87db
 set -o errexit
 
-rm -rf public
-mkdir public
+rm -rf dist
+mkdir dist
 
 # config
 git config --global user.email "nobody@nobody.org"
 git config --global user.name "Travis CI"
 
 # build (CHANGE THIS)
-make
+gulp build
 
 # deploy
-cd public
+cd dist
 git init
 git add .
 git commit -m "Deploy to Github Pages"
