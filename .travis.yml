@@ -3,7 +3,7 @@ sudo: false
 language: node_js
 node_js:
   - '0.12'
-script: npm run-script deploy
+script: gulp gh
 env:
   global:
   - GH_REF: github.com/webcaetano/test-static.git
@@ -12,6 +12,7 @@ before_script:
   - npm install -g bower
   - npm install -g gulp
   - bower install
+  - bash deploy-ghpages.sh
 cache:
   directories:
     - node_modules
