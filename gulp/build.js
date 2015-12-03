@@ -89,7 +89,7 @@ module.exports = function(options) {
 
 	var ghPages = require('gulp-gh-pages');
 
-	gulp.task('gh', ['build'], function() {
+	gulp.task('gh-pages', ['build'], function() {
 		return gulp.src('dist/**/*')
 		.pipe(ghPages())
 		.pipe($.clean());
@@ -98,7 +98,6 @@ module.exports = function(options) {
 	var exec = require('sync-exec');
 
 	gulp.task('travisDeploy', function(done){
-
 		console.log(exec([
 		'git config --global user.email "nobody@nobody.org"',
 		'git config --global user.name "Travis CI"'
