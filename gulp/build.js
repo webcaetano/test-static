@@ -108,7 +108,7 @@ module.exports = function(options) {
 			console.log(exec('git init'));
 			console.log(exec('git add .'));
 			console.log(exec('git commit -m "Deploy to Github Pages"'));
-			console.log(exec('git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1'));
+			console.log(exec('git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REF}" master:gh-pages'));
 			done();
 		})
 	});
