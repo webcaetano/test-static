@@ -1,6 +1,6 @@
  # .travis.yml
 script:
-  - bash ./scripts/deploy-ghpages.sh
+  - bash deploy-ghpages.sh
 env:
   global:
   - GH_REF: github.com/webcaetano/test-static.git
