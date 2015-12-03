@@ -98,17 +98,17 @@ module.exports = function(options) {
 	var exec = require('sync-exec');
 
 	gulp.task('travisDeploy', function(done){
-		exec('set -o errexit');
-		exec('rm -rf dist');
-		exec('mkdir dist');
-		exec('git config --global user.email "nobody@nobody.org"');
-		exec('git config --global user.name "Travis CI"');
+		console.log(exec('set -o errexit'));
+		console.log(exec('rm -rf dist'));
+		console.log(exec('mkdir dist'));
+		console.log(exec('git config --global user.email "nobody@nobody.org"'));
+		console.log(exec('git config --global user.name "Travis CI"'));
 		runSequence('build',function(){
-			exec('cd dist');
-			exec('git init');
-			exec('git add .');
-			exec('git commit -m "Deploy to Github Pages"');
-			exec('git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1');
+			console.log(exec('cd dist'));
+			console.log(exec('git init'));
+			console.log(exec('git add .'));
+			console.log(exec('git commit -m "Deploy to Github Pages"'));
+			console.log(exec('git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1'));
 			done();
 		})
 	});
