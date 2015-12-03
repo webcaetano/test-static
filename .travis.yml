@@ -1,4 +1,6 @@
-script: npm run-script deploy
+ # .travis.yml
+script:
+  - bash ./scripts/deploy-ghpages.sh
 env:
   global:
   - GH_REF: github.com/webcaetano/test-static.git
