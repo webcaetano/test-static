@@ -98,9 +98,19 @@ module.exports = function(options) {
 	var exec = require('sync-exec');
 
 	gulp.task('travisDeploy', function(done){
-		console.log(exec('git config --global user.email "nobody@nobody.org"; git config --global user.name "Travis CI"'));
+
+		console.log(exec([
+		'git config --global user.email "nobody@nobody.org"',
+		'git config --global user.name "Travis CI"'
+		].join("; ")));
 		runSequence('build',function(){
-			console.log(exec('cd dist; git init; git add .; git commit -m "Deploy to Github Pages"; git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1;'));
+			console.log(exec([
+				'cd dist',
+				'git init',
+				'git add .',
+				'git commit -m "Deploy to Github Pages"',
+				'git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1'
+			].join("; ")));
 			done();
 		})
 	});
