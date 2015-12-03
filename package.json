@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "dependencies": {},
   "scripts": {
-    "deploy": "./deploy-ghpages.sh",
+    "deploy": "gulp gh",
     "test": "gulp test"
   },
   "devDependencies": {
