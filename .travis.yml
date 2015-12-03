@@ -3,7 +3,7 @@ sudo: false
 language: node_js
 node_js:
   - '0.12'
-script: gulp gh
+script: npm run-script deploy
 env:
   global:
   - GH_REF: github.com/webcaetano/test-static.git
