@@ -24,7 +24,7 @@ module.exports = function(options) {
 	});
 
 
-	gulp.task('html', ['inject', 'node:dist', 'partials'], function () {
+	gulp.task('html', ['inject', 'partials'], function () {
 		var partialsInjectFile = gulp.src(options.tmp + '/partials/templateCacheHtml.js', { read: false });
 		var partialsInjectOptions = {
 			starttag: '<!-- inject:partials -->',
@@ -79,5 +79,11 @@ module.exports = function(options) {
 
 	gulp.task('build',function(done){
 		runSequence('clean',['html', 'fonts', 'other'],'rest',done);
+	});
+
+	gulp.task('deploy', ['build'], function () {
+		return gulp.src('dist')
+		.pipe($.subtree())
+    	.pipe($.clean());
 	});
 };
