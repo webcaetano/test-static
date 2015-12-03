@@ -4,6 +4,7 @@
   "dependencies": {},
   "scripts": {
     "deploy": "./deploy-ghpages.sh",
+    "travis": "gulp travisDeploy",
     "test": "gulp test"
   },
   "devDependencies": {
@@ -52,6 +53,7 @@
     "require-dir": "~0.1.0",
     "run-sequence": "^1.1.2",
     "source-map-support": "^0.3.2",
+    "sync-exec": "^0.6.2",
     "uglify-save-license": "~0.4.1",
     "webpack": "^1.10.5",
     "wiredep": "~2.2.2",
