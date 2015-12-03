@@ -20,8 +20,6 @@ var options = {
 wrench.readdirSyncRecursive('./gulp').filter(function(file) {
 	return (/\.(js|coffee)$/i).test(file);
 }).map(function(file) {
-	if(file.match(/templates/g)) return;
-	console.log(file);
 	require('./gulp/' + file)(options);
 });
 
