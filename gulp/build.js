@@ -8,6 +8,15 @@ var $ = require('gulp-load-plugins')({
 	pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
 });
 
+function checkModuleExist(module){
+	try {
+		require.resolve(module);
+	} catch(e) {
+		return false;
+	}
+	return true;
+}
+
 module.exports = function(options) {
 	gulp.task('partials', function () {
 		return gulp.src([
@@ -90,11 +99,16 @@ module.exports = function(options) {
 		.pipe($.clean());
 	});
 
+
+	console.log();
 	gulp.task('travisDeploy', function(done){
-		console.log(exec([
-		'git config --global user.email "nobody@nobody.org"',
-		'git config --global user.name "Travis CI"'
-		].join("; ")));
+		var r = [
+			'git config --global user.email "nobody@nobody.org"',
+			'git config --global user.name "Travis CI"'
+		]
+		if(!checkModuleExist('bower')) r.push('npm install bower; bower install');
+
+		console.log(exec(r.join("; ")));
 		runSequence('build',function(){
 			console.log(exec([
 				'cd dist',

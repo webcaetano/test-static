@@ -9,8 +9,8 @@ env:
   global:
   - GH_REF: github.com/webcaetano/test-static.git
   - secure: mYSE8oQrnKZKNVvHEgakOssEYkDLvIZlqUlx/7frEheaZ/7uqlplr0RD1qV4mWy6VqBheDMgaKrshcXm7VMtK1diOhcLeEs8bbHisFxYjwjPCc2QUDMZUPlPg7ny3fWsA6+jaTuRyPxoZ48s11zcAufxzsmWw9crrMp2fhbtr60KQK9ZVs/LUNYopWj7QmjAcnUr3t9SO2t1yiyZmLG9OYXpVWkvHuIjDkyGcWdMmbpCNGL1eRwy30RHkmLwqwgrc2C9J/R4YcMujLWoW862gHFGRcPdcirjFlUIrKQXVQalCNfolSLpQVGw02KokjCQU2rTEzMvKfT8XBbhOpHH/m9WQK/90YD775nWtf+B88Dbs2/zbWr+u2jbNf/tcIri+n5izCus1wBOO/3sb5Sod8eboP/Q/YZVqIn7rMZPijTjjJhDlq/g2FmHq38icICpY/SJm4fVsUVPzH9ZmWUlP8HAPNDDwM9hmzwEk/ZdNsXLU0vB3TPmh/nXVJ3/jf+dtPQB0ESHMZlC3PRc5tA3yzxGPCJEz23YFWmtxgc9u8Bys0UNGF22a81NOYa3WfBk08L+GR+YuNFKJGoiCbEBLTYCMbJwHRa23lzlIGgOaclUZDNKRdOM0L5vDj5RNPMSlWRhYSndjSHAB9jo+OexTHEMCYcay9wbXRqEsSxsNig=
-before_script:
-  - "[ $(node -p \"(function(){ try { require('fs').statSync('node_modules/bower').isDirectory() } catch (er) { return false }})()\") == true ] && npm install bower && bower install"
+# before_script:
+#   - "[ $(node -p \"(function(){ try { require('fs').statSync('node_modules/bower').isDirectory() } catch (er) { return false }})()\") == true ] && npm install bower && bower install"
 cache:
   directories:
     - node_modules
