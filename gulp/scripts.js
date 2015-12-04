@@ -2,6 +2,7 @@
 
 var gulp = require('gulp');
 var browserSync = require('browser-sync');
+var path = require('path');
 
 var $ = require('gulp-load-plugins')();
 
@@ -9,10 +10,11 @@ module.exports = function(options) {
 	function webpack(watch, callback, reload) {
 		if(!watch) watch = null;
 		var webpackOptions = {
+			cache: watch,
 			watch: watch,
 			module: {
 				// preLoaders: [{ test: /\.js$/, exclude: /node_modules/, loader: 'jshint-loader'}],
-				loaders: [{ test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'}]
+				loaders: [{ test: /\.js$/, exclude: /node_modules/, include:path.resolve(__dirname, "../src"), loader: 'babel-loader'}]
 			},
 			output: { filename: 'index.js' }
 		};

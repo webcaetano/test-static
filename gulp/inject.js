@@ -16,8 +16,6 @@ module.exports = function(options) {
 
 		var injectScripts = gulp.src([
 			options.tmp + '/serve/{app,components}/**/*.js',
-			// '!' + options.src + '/{app,components}/**/*.spec.js',
-			// '!' + options.src + '/{app,components}/**/*.mock.js'
 		], { read: false });
 
 		var injectOptions = {
@@ -26,7 +24,6 @@ module.exports = function(options) {
 		};
 
 		var wiredepOptions = {
-			//ignorePath: /^(\.\.\/)*\.\./
 			directory: 'bower_components'
 		};
 

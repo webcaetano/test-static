@@ -2,6 +2,8 @@
 
 var gulp = require('gulp');
 var browserSync = require('browser-sync');
+var cache = require('gulp-cached');
+var remember = require('gulp-remember');
 
 var $ = require('gulp-load-plugins')();
 
@@ -15,7 +17,7 @@ module.exports = function(options) {
 		};
 
 		var injectFiles = gulp.src([
-			options.src + '/{app,styles}/**/*.less',
+			options.src + '/{styles/**/*.less',
 			'!' + options.src + '/less/index.less',
 			'!' + options.src + '/less/vendor.less'
 		], { read: false });
@@ -40,9 +42,12 @@ module.exports = function(options) {
 		.pipe($.inject(injectFiles, injectOptions))
 		.pipe(indexFilter.restore())
 		.pipe($.sourcemaps.init())
+		.pipe(cache('styles'))
 		.pipe($.less(lessOptions)).on('error', options.errorHandler('Less'))
+		.pipe(remember('styles'))
 		.pipe($.autoprefixer()).on('error', options.errorHandler('Autoprefixer'))
 		.pipe($.sourcemaps.write())
 		.pipe(gulp.dest(options.tmp + '/serve/styles/'))
+		// .pipe(browserSync.reload({ stream: true }));
 	});
 };

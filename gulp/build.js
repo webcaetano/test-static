@@ -99,8 +99,6 @@ module.exports = function(options) {
 		.pipe($.clean());
 	});
 
-
-	console.log();
 	gulp.task('travisDeploy', function(done){
 		var r = [
 			'git config --global user.email "nobody@nobody.org"',
