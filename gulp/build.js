@@ -18,43 +18,19 @@ function checkModuleExist(module){
 }
 
 module.exports = function(options) {
-	gulp.task('partials', function () {
-		return gulp.src([
-			options.src + '/app/**/*.html'
-		])
-		.pipe($.minifyHtml({
-			empty: true,
-			spare: true,
-			quotes: true
-		}))
-		.pipe($.angularTemplatecache('templateCacheHtml.js', {
-			module: 'heros'
-		}))
-		.pipe(gulp.dest(options.tmp + '/partials/'));
-	});
-
-
-	gulp.task('html', ['inject', 'partials'], function () {
-		var partialsInjectFile = gulp.src(options.tmp + '/partials/templateCacheHtml.js', { read: false });
-		var partialsInjectOptions = {
-			starttag: '<!-- inject:partials -->',
-			ignorePath: options.tmp + '/partials',
-			addRootSlash: false
-		};
-
+	gulp.task('html', ['inject'], function () {
 		var assets;
 		return gulp.src(options.tmp + '/serve/*.html')
-			.pipe($.inject(partialsInjectFile, partialsInjectOptions))
 			.pipe(assets = $.useref.assets())
 			.pipe($.rev())
-			.pipe($.if('*.js', $.ngAnnotate()))
+			// .pipe($.if('*.js', $.ngAnnotate()))
 			.pipe($.if('*.js', $.uglify()))
-			.pipe($.replace('../../bower_components/font-awesome-less/fonts/', '../fonts/'))
+			// .pipe($.replace('../../bower_components/font-awesome-less/fonts/', '../fonts/'))
 			.pipe($.if('*.css', $.csso()))
 			.pipe(assets.restore())
 			.pipe($.useref())
 			.pipe($.revReplace())
-			.pipe($.if('*.html', $.minifyHtml({empty: true,	spare: true, quotes: true, conditionals: true})))
+			// .pipe($.if('*.html', $.minifyHtml({empty: true,	spare: true, quotes: true, conditionals: true})))
 			.pipe(gulp.dest(options.dist + '/'))
 			.pipe($.size({ title: options.dist + '/', showFiles: true }));
 	});
