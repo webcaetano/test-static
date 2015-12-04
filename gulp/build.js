@@ -2,6 +2,7 @@
 
 var gulp = require('gulp');
 var runSequence = require('run-sequence');
+var exec = require('sync-exec');
 
 var $ = require('gulp-load-plugins')({
 	pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
@@ -81,12 +82,6 @@ module.exports = function(options) {
 		runSequence('clean',['html', 'fonts', 'other'],'rest',done);
 	});
 
-	gulp.task('deploy', ['build'], function () {
-		return gulp.src('dist')
-		.pipe($.subtree())
-    	.pipe($.clean());
-	});
-
 	var ghPages = require('gulp-gh-pages');
 
 	gulp.task('gh-pages', ['build'], function() {
@@ -94,8 +89,6 @@ module.exports = function(options) {
 		.pipe(ghPages())
 		.pipe($.clean());
 	});
-
-	var exec = require('sync-exec');
 
 	gulp.task('travisDeploy', function(done){
 		console.log(exec([
